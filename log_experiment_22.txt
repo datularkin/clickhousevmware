@@ -1,0 +1,2 @@
+Thu Jun 27 02:59:12 2019 - took118024.6222217083 seconds - created 500 files - a total of 150000000 rows 
+Thu Jun 27 08:10:14 2019 - took136686.12951898575 seconds - created 1000 files - a total of 150000000 rows 
