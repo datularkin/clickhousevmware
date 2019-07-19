@@ -93,20 +93,20 @@ s = 300000
 if __name__ == '__main__':
     start = time.time()
     events = []
-    i = int(sys.argv[1])
+    Hour = int(sys.argv[1])
     with open('4TupleFromDb.csv', 'r') as f:
         j = 0
-        h = int(sys.argv[2])
-        max_tuples = ((h + 500) * s) / t
+        files_created = int(sys.argv[2])
+        max_tuples = ((files_created + 500) * s) / t
         for eachTuple in csv.reader(f):
-            if (j < (h * s) / t):
+            if (j < (files_created * s) / t):
                 j = j + 1
                 continue
             else:
                 z = fetch_metadata(eachTuple, j)
-                for v in range(t):
+                for version in range(t):
                     x = z[:]
-                    event_datetime = event_date.replace(hour=i, minute=random.randint(0, 59), second=random.randint(0, 59))
+                    event_datetime = event_date.replace(hour=Hour, minute=random.randint(0, 59), second=random.randint(0, 59))
                     active_timestamp = int(event_datetime.timestamp())
                     srcBytes = random.randint(2500000, 28000000)
                     dstBytes = random.randint(2500000, 28000000)
@@ -125,20 +125,20 @@ if __name__ == '__main__':
                     events.append(x)
                     total_inserted_events = total_inserted_events + 1
                     if (total_inserted_events / s == total_inserted_events // s):
-                        h = h + 1
+                        files_created = files_created + 1
                         df = pd.DataFrame(events)
-                        df.to_csv(f'flow_Data_{i + 1}_{h}_.csv.gz', header=False, index=False,compression='gzip')
+                        df.to_csv(f'flow_Data_{i + 1}_{files_created}_.csv.gz', header=False, index=False,compression='gzip')
                         events = events[s:]
                 j = j+1
                 if (j == max_tuples): break
     if (len(events) < s and len(events) > 0):
         df = pd.DataFrame(events)
-        df.to_csv(f'remaining_data_{i}.csv.gz', header=False, index=False, compression='gzip')
+        df.to_csv(f'remaining_data_{Hour}.csv.gz', header=False, index=False, compression='gzip')
     end = time.time()
     took = end - start
-    with open(f'log_experiment_{i}.txt', 'a') as logfile:
+    with open(f'log_experiment_{Hour}.txt', 'a') as logfile:
         text = f"{time.ctime(end)} - " \
                f"took{took} seconds - " \
-               f"created {h} files - " \
+               f"created {files_created} files - " \
                f"a total of {total_inserted_events} rows \n"
         logfile.write(text)
