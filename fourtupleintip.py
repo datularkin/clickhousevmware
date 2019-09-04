@@ -41,7 +41,7 @@ i = 0
 j = 0
 fourTupleForPlanning = []
 start = time.time()
-while (len(fourTupleForPlanning) < 30000000):
+while (len(fourTupleForPlanning) < 3000000):
     srcip = int(ip_address(src_ip[i]))
     dstip = int(ip_address(dst_ip[j]))
     rand = random.randint(1,100)
@@ -58,7 +58,7 @@ while (len(fourTupleForPlanning) < 30000000):
         portName = set[1]
         protocol = set[2]
         fourTupleForPlanning.append([srcip, dstip, port, portName, protocol])
-        if len(fourTupleForPlanning) == 30000000:
+        if len(fourTupleForPlanning) == 3000000:
             break
     j = j+1
     if (j == 2000):
@@ -70,4 +70,4 @@ with open (filename, 'a') as file:
     writer.writerows(fourTupleForPlanning)
 end = time.time()
 took = round(end-start,2)
-print(f'inserted into {filename} 30million entries took {took} seconds')
+print(f'inserted into {filename} 3million entries took {took} seconds')

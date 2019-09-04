@@ -22,6 +22,14 @@ Setup Anaconda environment in all the setups to run scripts:
 
 -----------------------------------------------------------------------------------------------------------------------------
 
+# For small setups:
+# Change 30M to 3M and run the below command to generate 3M 4Tuples
+
+python3 fourtupleintip.py
+cp fourTupleIntIpPlanning.csv 4TupleFromDb.csv
+
+-----------------------------------------------------------------------------------------------------------------------------
+
 --> Generate MetaData using 'ipMetaDataGen.py'
 ``python3 ipMetaDataGen.py``
 --> Generate FourTuple Data using '4TupleGen.py' and send two system arguments while running code
