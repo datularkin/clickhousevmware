@@ -131,13 +131,13 @@ if __name__ == '__main__':
                     if (total_inserted_events / s == total_inserted_events // s):
                         files_created = files_created + 1
                         df = pd.DataFrame(events)
-                        df.to_csv(f'flow_Data_{j + 1}_{files_created}_.csv.gz', header=False, index=False,compression='gzip')
+                        df.to_csv(f'flow_Data_{j + 1}_{files_created}_{Hour}.csv.gz', header=False, index=False,compression='gzip')
                         events = events[s:]
                 j = j+1
                 if (j == max_tuples): break
     if (len(events) < s and len(events) > 0):
         df = pd.DataFrame(events)
-        df.to_csv(f'remaining_data_{Hour}.csv.gz', header=False, index=False, compression='gzip')
+        df.to_csv(f'flow_Data_remaining_data_{Hour}.csv.gz', header=False, index=False, compression='gzip')
     end = time.time()
     took = end - start
     with open(f'log_experiment_{Hour}.txt', 'a') as logfile:
